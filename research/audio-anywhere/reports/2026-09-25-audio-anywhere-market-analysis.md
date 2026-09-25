@@ -24,7 +24,7 @@ This wedge is a gap in incumbents' execution, not a moat. It also has **zero fir
 
 | # | Question | Short answer | Confidence |
 |---|---|---|---|
-| 1 | **Do other people care about this problem, or only me?** | **Others care, but not the people you think.** Long-document failure in built-in TTS is one of the most persistent complaints on Apple's forums: 15+ threads from iOS 8 to iOS 26, such as ["iOS 18: 'Speak Screen' is largely broken"](https://discussions.apple.com/thread/256013629) and ["No speakable content could be found on the screen"](https://discussions.apple.com/thread/254777900). Paying users of [Speechify](https://justuseapp.com/en/app/1209815023/speechify-audio-text-reader/problems) and [ElevenReader](https://justuseapp.com/en/app/6479373050/elevenlabs-reader-ai-audio/reviews) report the same "loses its place" failure. But the complainers are mostly **accessibility users of free built-ins**. They are the least likely to pay a new subscription. We found **no first-person quote** from a lawyer, consultant or analyst. Your own Google Docs complaint was partly fixed by Google in Aug 2025 with [Gemini "Listen to this tab"](https://workspaceupdates.googleblog.com/2025/08/listen-to-documents-using-gemini-google-docs.html) (web only, Workspace/AI plans). | Pain: High. Paying professional pain: Unknown |
+| 1 | **Do other people care about this problem, or only me?** | **Others care, but not the people you think.** Long-document failure in built-in TTS is one of the most persistent complaints on Apple's forums: 15+ threads from iOS 8 to iOS 26, such as ["iOS 18: 'Speak Screen' is largely broken"](https://discussions.apple.com/thread/256013629) and ["No speakable content could be found on the screen"](https://discussions.apple.com/thread/254777900). Paying users of [Speechify](https://justuseapp.com/en/app/1209815023/speechify-audio-text-reader/problems) and [ElevenReader](https://justuseapp.com/en/app/6479373050/elevenlabs-reader-ai-audio/reviews) report the same "loses its place" failure. But the complainers are mostly **accessibility users of free built-ins**. They are the least likely to pay a new subscription. We found **no first-person quote** from a lawyer, consultant or analyst. Google only partly fixed your own Google Docs complaint. [Gemini "Listen to this tab"](https://workspaceupdates.googleblog.com/2025/08/listen-to-documents-using-gemini-google-docs.html) (Aug 2025) works **only for paid Workspace and Google AI Pro/Ultra users, on desktop web, in English**. Free Gmail accounts and the Docs iOS app get no full read-aloud (see §10.6). | Pain: High. Paying professional pain: Unknown |
 | 2 | **What exists today? What is the App Store competition?** | **Saturated.** [Speechify](https://speechify.com/) claims 50–60M users and is profitable, earning about $2M/month on US iOS alone ([Sensor Tower](https://app.sensortower.com/overview/1209815023?country=US)). [ElevenReader](https://elevenreader.io/blog/best-pricing-more-value) has the best voices, 10 free hours a month and $99/yr, backed by an [$11B parent](https://techcrunch.com/2026/02/04/elevenlabs-raises-500m-from-sequioia-at-a-11-billion-valuation/). Audeus, Peech, NaturalReader/Voice Dream, Listening.com and Speech Central ($9.99 one-time) fill the middle. [Dozens of template apps](https://apps.apple.com/us/app/ai-reader-read-aloud-pdf-book/id6754524209) bid on the keywords. Resume-position is **table stakes**. See the comparison table in section 4. | High |
 | 3 | **How big is the market, and what is the realistic revenue?** | Ignore the $4–5B "TTS market" reports ([GM Insights](https://www.gminsights.com/industry-analysis/text-to-speech-market) and similar); they bundle IVR, automotive and enterprise APIs. Bottom-up **US consumer read-aloud spend is about $45–70M/yr**, roughly two-thirds to three-quarters of it Speechify. The **briefing-reader SAM is about $5–16M/yr**. A solo or small team realistically reaches **$53–106K in bookings net of Apple's 15% in year 1** and **$0.35–0.7M ARR in year 3**, and only if annual renewal beats the productivity median. | Low–Medium (assumption-heavy) |
 | 4 | **Pricing, unit economics and what the founder earns ("compensation")** | Price at **$8.99/mo or $69/yr**, under ElevenReader ($99) and Speechify ($139). **Never sell "unlimited premium cloud voice":** at $9.99/mo, a 20 h/mo user on ElevenLabs v3 voices runs a **−1,113% gross margin**. On-device voices (Kokoro-82M) give about 100% gross margin. The binding constraint is not COGS. It is **LTV ≈ $32 per payer** (North America median, [RevenueCat](https://www.revenuecat.com/state-of-subscription-apps)) and **~23% annual renewal for productivity apps**. Year 1 will not replace a salary. By year 3 the business could pay one to three people. | Medium |
@@ -34,7 +34,7 @@ This wedge is a gap in incumbents' execution, not a moat. It also has **zero fir
 
 | Hypothesis | Verdict | One-line rationale |
 |---|---|---|
-| **H1:** Built-in and existing TTS readers handle long documents badly, and people complain | **Partial** | Strongly true for iOS built-ins and true for Speechify and ElevenReader. But Google fixed Docs on the web (Aug 2025), Apple shipped Accessibility Reader (iOS 26), and complainers are mostly accessibility users, not professionals. |
+| **H1:** Built-in and existing TTS readers handle long documents badly, and people complain | **Partial** | Strongly true for iOS built-ins and true for Speechify and ElevenReader. But Google fixed Docs for paid plans on desktop web (Aug 2025; free and mobile users still lack it, §10.6), Apple shipped Accessibility Reader (iOS 26), and complainers are mostly accessibility users, not professionals. |
 | **H2:** No strong AI audiobook-style document reader dominates the App Store | **Rejected** | Speechify dominates distribution and ElevenReader dominates quality. Both are funded, and both offer resume, sync and cloud import. |
 | **H3:** A niche of long docs + progress saving + Google Docs/PDF import can be owned | **Rejected as stated** (a narrowed version is unproven) | All three features are claimed by at least three competitors, and resume is table stakes. What remains open is *structure fidelity + reliability + on-device privacy for professional documents*. That niche is untested. |
 | **H4:** People will pay a subscription for this | **Partial** | The category clearly monetizes (Speechify, NaturalReader, Readwise at $80–160/yr). But an entrant faces ~2.6% install-to-paid, ~23% renewal, $32 LTV, an ElevenReader free tier covering about eight 20-page documents a month, and an accessibility segment hostile to subscriptions. |
@@ -532,6 +532,219 @@ No-card trial; reminder before charge; one-tap cancel; on-device processing with
 3. **Week 1:** launch landing pages A/B (Exp. 4); start the cleanup spike (Exp. 6).
 4. **Week 2:** start the concierge pilot (Exp. 3) with the first 10–15 interviewees.
 5. **In parallel:** do a manual Reddit and App Store review pass to fill the evidence gaps above.
+
+---
+
+## 10. Addendum: Follow-up Questions (25 Sep 2026)
+
+The founder asked eight follow-up questions after reading the report. Each answer below starts with the short answer. Evidence is in [raw/business-models.md](../raw/business-models.md) and [raw/platform-limits.md](../raw/platform-limits.md). Tags: [A] = analyst assumption, [U] = unverified.
+
+### 10.1 Is the market saturated, or does it just have established leaders?
+
+**Short answer: it has established leaders and a crowded long tail. It is saturated in features and in advertising, not in customer satisfaction.** "Saturated" was too blunt. Three different things are true at once:
+
+| Layer | State | What it means for you |
+|---|---|---|
+| **Spend** | **Concentrated.** Speechify takes roughly two-thirds to three-quarters of US consumer spend, and ElevenReader is the fast #2 | The top two own the head search terms and the ad auctions |
+| **Features** | **Saturated.** Google Docs import, resume, sync and natural voices each ship in 3+ apps | You can't win on a feature checklist |
+| **Satisfaction** | **Not saturated.** Speechify has an F rating at the BBB over billing; users say ElevenReader "loses its place"; Apple's built-in readers have a decade of bug threads | People are unhappy, but unhappy people don't find you without distribution |
+
+**Why the niche exists if the market is crowded.** Niches survive next to strong leaders for four reasons, and all four apply here:
+
+1. **It's small.** Professionals who must hear 20–200-page structured documents word for word are about a $5–16M niche (§6). That's too small for Speechify's growth targets or ElevenLabs' $11B valuation to care about. Honestly, that's the main reason it's open, and it also caps what you can earn.
+2. **The leaders' business models point elsewhere.** Speechify earns its money on mass-market students, dyslexic readers and books, using high-volume ads. ElevenReader exists to showcase ElevenLabs' cloud voices and now sells audiobooks. Neither is rewarded for the unglamorous work of reading footnotes and tables correctly.
+3. **Getting document structure right is hard, boring engineering.** It doesn't make a good ad, so it gets underinvested.
+4. **Privacy cuts against a cloud-voice business model.** An app whose pitch is "your document never leaves your phone" competes against its own premium cloud voices. *Correction: this gap is narrowing. Speechify launched on-device iOS voices in Dec 2025 ([Speechify](https://speechify.com/news/speechify-launches-on-device-ios-ai-voices-for-offline-reading/)), and small apps built on the free Kokoro voice model already exist (Local TTS, Sandbook, Voice Forge). On-device voices are becoming table stakes. Privacy by design (no account, no upload, no server) is still rare.*
+
+### 10.2 Where do the costs actually come from? (ELI5)
+
+**Short answer: the voice is cheap. Finding customers is expensive, and Apple takes a cut.** High prices are set by what buyers will pay and by the cost of advertising, not by the cost of generating speech.
+
+**The lemonade-stand version.** Imagine selling a $139 cup of lemonade:
+- **Apple takes $21–42** just for letting you sell on its App Store (15–30%).
+- **The lemons (the voice)** cost about **$15 a year** for a typical listener. Speechify says its voices cost it "single-digit dollars per million characters" [U], and at 5 hours a month that's roughly $15.
+- **The billboards (ads)** are the big cost. In the US, each app install bought through ads costs about **$4–6** ([AppTweak](https://www.apptweak.com/en/aso-blog/apple-ads-benchmarks)), and only about 2–10% of installs ever pay. So each *paying* customer costs about **$50–300 in ads**. Speechify spends about $500K a month just *making* ads, testing about 1,300 AI-made ads a day ([Speechify/20VC](https://speechify.com/news/speechify-ceo-cliff-weitzman-20vc-podcast/)).
+- **Refunds and chargebacks** take about 2–5%.
+- What's left pays staff, servers and profit.
+
+**Why the price is so high:** most subscribers quit within a year (productivity apps renew at only about 23%). An app therefore has to take a big annual payment up front to earn back the $50–300 it spent to find that customer. The high price comes from the high advertising cost.
+
+**Why the price *can* be so high:** buyers compare against expensive anchors. Read&Write costs about $170 a year and Kurzweil about $500. In the UK, government disability grants (DSA) have paid for 86K+ ClaroRead licences ([Everway](https://www.everway.com/en-gb/govt-grant-schemes/what-is-dsa/claroread/)), so many accessibility buyers aren't paying out of pocket. That anchor is weakening: the UK has proposed removing most software from DSA ([Wonkhe](https://wonkhe.com/blogs/dfe-proposes-to-strip-most-assistive-software-out-of-disabled-students-allowance/)).
+
+**Why Speech Central can charge $9.99 once:**
+- It uses the iPhone's built-in voices, so each listening hour costs $0.
+- It runs no ads and has no paid acquisition.
+- It's a tiny team.
+- It grows through goodwill: free for VoiceOver users and schools ([speechcentral.net](https://speechcentral.net/)).
+
+Remove ads and cloud voices, and $9.99 is sustainable, but only at small scale.
+
+### 10.3 Would cheap infrastructure (DigitalOcean) plus tiers win market share?
+
+**Short answer: cheap infrastructure brings voice cost close to zero, but voice cost was never the main cost. A low price helps you convert and keep customers. It does not solve discovery.**
+
+**Cost per hour of generated audio:**
+
+| Option | $ per audio hour | Notes |
+|---|---|---|
+| On-device (iPhone's built-in voices, or Kokoro on the phone) | **$0** | Uses the user's battery. See 10.5 for the screen-lock limit. |
+| Self-hosted Kokoro on a GPU (DigitalOcean RTX 4000 Ada at $0.76/h; RunPod/Vast RTX 4090 at $0.29–0.69/h) | **~$0.01–0.04** | Kokoro runs 36–96× faster than real time on a GPU ([benchmark](https://gist.github.com/efemaer/23d9a3b949b751dde315192b4dcf0653)) |
+| Self-hosted Kokoro on a CPU-only droplet | ~$0.07–0.19 | 0.9–5× real time depending on cores ([benchmark](https://github.com/obole-ia/tts-cpu-benchmark)) |
+| Hosted Kokoro API (someone else runs the GPU) | ~$0.03–0.04 | $0.65–0.80 per 1M characters |
+| Self-hosted Orpheus / Chatterbox (more expressive) | ~$0.05–0.35 | Orpheus weights use Meta's Llama licence |
+| Mid-tier cloud API (OpenAI, Google Neural2, Chirp 3 HD) | $0.77–1.54 | $15–30 per 1M characters |
+| ElevenLabs | $2.60–5.10 | The premium benchmark |
+
+GPU prices are from third-party trackers such as [computeprices](https://computeprices.com/providers/digitalocean) [U]; check them against DigitalOcean's own pricing page.
+
+**The trap: an idle server.** One always-on GPU droplet costs **$215–555 a month whether anyone listens or not**. At 100 users that's more per user than a cloud API. It only pays off at roughly **300–700 listening hours a day**. It also brings operations work: autoscaling, queues, and GPU cold starts measured in minutes.
+
+**Recommended order:**
+1. Voices on the phone by default ($0).
+2. A hosted Kokoro API for optional cloud voices.
+3. Your own DigitalOcean or Hetzner GPU only after usage passes several hundred hours a day.
+
+**Licence traps to avoid:**
+- **XTTS-v2** is non-commercial, and a licence can't be bought because Coqui shut down.
+- **F5-TTS** weights are non-commercial (CC-BY-NC).
+- **Piper** voices each carry their own licence.
+- **Kokoro's espeak-ng** pronunciation step is GPLv3. Use Misaki instead.
+
+**Does a cheap alternative gain share?** Partly:
+- **Helps:**
+  - Near-zero cost of goods lets you undercut the $99–139 tier profitably.
+  - Price complaints about Speechify, Voice Dream and NaturalReader are common.
+  - A low price converts better and draws fewer billing complaints.
+  - There's an unclaimed gap: no family plan from Speechify or ElevenReader.
+- **Doesn't help:**
+  - "Pay once, not $139/yr" is already a common competitor pitch.
+  - Speech Central already sells at $9.99 lifetime.
+  - Cheap doesn't get you found. A low price also shrinks what you can spend to acquire a customer, which pushes you further toward organic, community-led growth.
+
+### 10.4 Business models compared
+
+Year-1 illustration using the same **30K installs** as §6. Conversion rates for the cheaper models are assumptions [A]; cheaper offers usually convert better.
+
+| Model | Example | Convert [A] | Year-1 revenue (net of Apple's 15%) | Pros | Cons |
+|---|---|---|---|---|---|
+| **Premium subscription** ($69/yr) | Speechify, ElevenReader, Audeus | 3–6% | **$53–106K** | Recurring; funds some ads | Head-to-head with the leaders; productivity renewal about 23% |
+| **Low-price subscription** ($2.99/mo or $29.99/yr) | None found among TTS readers | 6–10% | **~$46–76K** | Undercuts everyone; less churn pain | Can't fund paid ads (12–24 month payback) |
+| **One-time purchase** ($14.99) | Speech Central ($9.99), Voice Dream legacy | 8–12% | **~$31–46K**, not recurring | Accessibility users love it; no billing anger | Revenue stops unless installs keep growing; cloud voices are unaffordable |
+| **Free on-device + paid tiers** | ElevenReader, NaturalReader | 2–5% | Depends on tier prices | Wide top of funnel | Free-tier apps convert about 2.1% vs 10.7% for pay-first ([RevenueCat](https://www.revenuecat.com/blog/growth/subscription-app-trends-benchmarks-2026)) |
+| **Credits / top-ups** for cloud voices | ReadBack, SpeechGen | n/a | Add-on | Heavy users pay their own voice cost | Users dislike meters |
+| **Ads only** | Voice Aloud Reader (MWM), @Voice | n/a | **~$2–12K** (see 10.8) | No paywall | Tiny revenue; clashes with privacy and VoiceOver |
+| **Family plan** ($39–49/yr for 5) | Not offered by the leaders | [A] | Add-on | Unclaimed gap | Needs Apple Family Sharing setup |
+| **B2B / education licences** | Read&Write (~$2.60/student district-wide), Kurzweil (~$4K/site) | n/a | Lumpy, larger | Real budgets; no Apple fee on invoiced sales | Slow sales; needs an accessibility conformance report (VPAT); DSA headwind |
+
+**Recommended structure, if the tests pass:**
+- **Free:** unlimited reading with Apple's on-device voices, including document cleanup. No ads, no account.
+- **Plus ($2.99/mo, $24.99/yr, or $39.99 lifetime):** on-device neural voices (Kokoro), exact resume across devices, heading navigation, and a family plan.
+- **Cloud voice top-ups (optional):** metered studio voices at cost plus margin.
+
+This is the "honest price, private by design" position. Its ceiling is lower than a $69 subscription's, but it matches what the evidence says people are angry about.
+
+### 10.5 Keeping documents only on the phone (no server storage)
+
+**Short answer: feasible, and a strong privacy story. There is one real engineering catch: the screen lock.**
+
+**How it works end to end:**
+1. **Import without our server.**
+   - PDFs, Word, text, EPUB and HTML arrive through the Share Sheet or the Files app.
+   - For Google Docs, the Docs iOS app's **"Send a copy" → PDF or Word** passes the file straight to the app with no Google sign-in ([TechRepublic](https://www.techrepublic.com/article/how-to-export-a-google-doc-from-your-iphone/)).
+   - Optionally, Google sign-in plus a Drive export downloads the file straight to the phone.
+2. **Extract and clean the text on the phone:** Apple's PDFKit, plus Vision's document reader in iOS 26 for scans and screenshots.
+3. **Generate speech on the phone:** Apple's built-in voices, or Kokoro (about 80–312 MB; 3.3× real time on iPhone 13 Pro, 4–4.5× on 15 Pro, about 17× on 16 Pro via the Neural Engine; [kokoro-ios](https://github.com/mlalma/kokoro-ios), [kokoro-coreml-ane](https://github.com/Jon-Schneider/kokoro-coreml-ane)).
+4. **Nothing is stored on a server.** The App Store privacy label can read **"Data Not Collected"** if analytics are also off ([Apple](https://developer.apple.com/app-store/app-privacy-details/)). You never hold client documents. That removes most of the storage cost and much of the legal exposure (ABA Opinion 512 concerns, GDPR processor duties; get a lawyer to confirm).
+
+**The catch: iOS does not let apps use the GPU in the background** ([Apple Developer Forums](https://developer.apple.com/forums/thread/816774)). A Kokoro-style voice running on the GPU stops generating when the screen locks. Sandbook, an existing Kokoro app, says live reading "pauses when the screen locks." Workarounds:
+- **Render ahead** while the app is open. A 2-hour document takes about 36 minutes to render on iPhone 13 Pro and about 7 minutes on 16 Pro, then plays locked like any audio file (about 58 MB as AAC).
+- **Fall back to Apple's built-in voices when locked.** They keep speaking in the background.
+- **Run the model on the Neural Engine.** It might be allowed in the background; this is unverified and needs a prototype.
+
+**Other limits:**
+- Apple's on-device language model has only a 4,096-token window, so it can clean a document about 2–3 pages at a time but can't summarize the whole thing.
+- Older iPhones are slow, and I found no battery benchmarks.
+- Third-party apps can't use Siri's voices. Users must download Apple's "Premium" voices themselves in Settings ([Speech Central](https://speechcentral.net/2026/08/08/why-cant-third-party-apps-use-siri-voices-on-iphone-ipad-and-mac/)).
+
+### 10.6 Google Docs: why it didn't work for you, and the 10-minute limit
+
+**Short answer: your experience is consistent with the evidence. Google's "fix" covers paying users on desktop web only. There is a real ~10-minute cap in Google's speech service, but it's a developer limit, not a documented Docs limit.**
+
+- **"Listen to this tab"** (Aug 2025) is only for paid Workspace plans (Business Standard/Plus, Enterprise, Education add-ons) and Google AI Pro/Ultra subscribers. It is **desktop web only and English only**. On a free Gmail account the menu item doesn't appear ([Google Workspace Updates](https://workspaceupdates.googleblog.com/2025/08/listen-to-documents-using-gemini-google-docs.html), [9to5Google](https://9to5google.com/2025/08/18/google-docs-audio-gemini/)).
+- **Audio summaries** (Feb 2026) give a spoken recap of about 3 minutes, not a full reading ([9to5Google](https://9to5google.com/2026/02/12/google-docs-audio-summaries/)).
+- **The Google Docs iOS app has no read-aloud.** Its Sept 2026 voice feature is a Gemini *conversation*, not a reader.
+- **Docs' older "Speak selection" does nothing unless a screen reader is turned on** ([Google Help](https://support.google.com/docs/answer/6282736)). This is the most likely reason read-aloud "was not working."
+- **Where ~10-minute limits do exist:**
+  - Google's Gemini speech service caps a single request at about **655 seconds (10.9 min)** and cuts off the rest ([Google Cloud docs](https://docs.cloud.google.com/text-to-speech/docs/gemini-tts)). Any tool built on it that doesn't split long text would stop at about 10 minutes.
+  - Free tiers of popular Chrome read-aloud extensions allow only **5–20 minutes a day** (NaturalReader, Read Aloud).
+  - Chrome's built-in Google voices cut off after about 15 seconds per chunk unless the text is split ([Chromium bug](https://bugs.chromium.org/p/chromium/issues/detail?id=679437)).
+- **Implication:** H1 is somewhat *stronger* than the report first said, for free and mobile Google Docs users. That's a large group, and they are precisely the ones Google's fix leaves out.
+
+### 10.7 Can an iPhone produce two hours of audio?
+
+**Short answer: yes. There is no hardware or OS limit.** Two hours of speech is about 58 MB as AAC, which is trivial. Apple's built-in readers (Speak Screen, Listen to Page, Accessibility Reader) stop because of *bugs*, not a cap: they stop after one page, skip paragraphs, or stop on lock ([Apple Community](https://discussions.apple.com/thread/256209564), [2](https://discussions.apple.com/thread/255489297)).
+
+A dedicated app can play for hours if it does three things:
+- turns on the background-audio mode;
+- splits text by sentence, which works around known early-stop bugs in Apple's iOS 17 speech engine ([Apple forums](https://developer.apple.com/forums/thread/737685));
+- or renders to a file first.
+
+That reliability is precisely the product.
+
+### 10.8 Can ads offset costs? (ELI5)
+
+**Short answer: ads can pay for a free voice, not an expensive one.** People listen with the screen locked, so they rarely see ads. Estimated ad revenue is about **$0.01–0.05 per listening hour**:
+- banner ads earn about $0.50 per 1,000 views;
+- full-screen ads about $12–14;
+- rewarded videos $15–40;
+- only about 25–27% of iOS users allow ad tracking ([Adjust](https://www.adjust.com/blog/att-opt-in-rates-2025/)).
+
+Example [A]: 5,000 regular listeners × 4 hours a month × 12 months = 240K listening hours × $0.01–0.05 ≈ **$2–12K a year**.
+
+| Voice | Cost per hour | Ad revenue per hour | Covered by ads? |
+|---|---|---|---|
+| On-device | $0 | $0.01–0.05 | Yes |
+| Self-hosted Kokoro | $0.01–0.04 | $0.01–0.05 | Roughly |
+| Cloud API ($15–30 per 1M) | $0.77–1.54 | $0.01–0.05 | **No, 25–100× short** |
+| ElevenLabs | $2.60–5.10 | $0.01–0.05 | No |
+
+**The lemonade-stand version:** an ad pays you a few cents. A premium voice hour costs a dollar or more. You'd need about 20–100 rewarded videos per listening hour to break even on a cloud voice, and nobody will watch that many.
+
+Only template apps use ads (Voice Aloud Reader by MWM, @Voice, Easy TTS Reader). The premium players don't, and ads would undercut both the privacy pitch and VoiceOver users. **Recommendation: no ads.** Keep the free tier on-device so it costs nothing to serve.
+
+### 10.9 What "PDF cleanup" means
+
+A PDF isn't really a document. It's closer to a *picture of printed pages*: every word is placed at an x/y position, with no built-in notion of "this is the body text, read it in this order." A reader that simply reads everything on the page produces this:
+
+> "…the committee recommended that the agency. CONFIDENTIAL — DRAFT v3 — Page 12 of 48. Section 4 Findings. Twelve. Increase funding by fifteen percent three. In the second quarter the impor- tant…"
+
+Here's what went wrong in that example, and what "cleanup" does about it:
+
+| Problem | What a naive reader says | Cleanup behaviour |
+|---|---|---|
+| Running headers, footers, page numbers | "CONFIDENTIAL — DRAFT v3 — Page 12 of 48" on every page, mid-sentence | Detect text that repeats on every page and skip it |
+| Footnotes | Reads footnote ³ in the middle of a paragraph, or "three" after a word | Skip footnote markers; read footnotes at the end of the paragraph or section, or offer them on tap |
+| Two-column layouts | Jumps across columns line by line | Rebuild the real reading order |
+| Tables | "Q1 Q2 Q3 12 15 18 revenue cost…" | Read row by row ("Q1: revenue 12, cost 8…") or announce "table skipped" |
+| Hyphenated line breaks | "impor- tant" | Rejoin the word to "important" |
+| Headings | Read the same as body text | Pause, change emphasis, add chapter markers for navigation |
+| Scans and screenshots | Silence (no text layer) | Recognize the text first (Apple's Vision reader or OCR) |
+
+Word, Google Docs (exported as Word), plain text, EPUB and web pages already carry their structure, so they need little cleanup. PDFs and scans are where readers fail, and professional briefings are mostly PDFs.
+
+### 10.10 What changes in the recommendation
+
+| Before | After this addendum |
+|---|---|
+| Price at $69/yr with metered cloud voices | **Lead with a cheaper, private-by-design model:** free on-device reading, then $2.99/mo, $24.99/yr or a lifetime option for neural on-device voices, plus a family plan. Cloud voices only as optional top-ups. |
+| Google Docs "fixed" by Google | **Only for paid desktop-web users.** Free and mobile Docs users are unserved. Import via "Send a copy" from the Docs app. |
+| On-device voices as a differentiator | **Now table stakes** (Speechify, Dec 2025). The differentiator is *no account, no upload, no server* plus accurate document structure. |
+| Server costs a concern | **Keep servers out of the reading path.** Use a hosted Kokoro API only for optional cloud voices, and self-host on DigitalOcean only above ~300–700 listening hours a day. |
+| Verdict: test before building | **Unchanged**, but the downside is smaller. A $0-cost-of-goods, no-ads app can break even with a few hundred paying users and doesn't need venture funding. Distribution is still the binding constraint. |
+
+**One new experiment:** add a price test to Experiment 4, comparing a $2.99/mo subscription, a $24.99/yr plan and a $39.99 lifetime option against $69/yr on the same landing page.
+
+**New engineering spike:** check whether Kokoro can generate speech on the Neural Engine while the screen is locked. If it can't, ship "render ahead" and fall back to Apple's voices when locked.
 
 ---
 
