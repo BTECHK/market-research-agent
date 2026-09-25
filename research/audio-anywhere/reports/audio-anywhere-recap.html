@@ -1,0 +1,343 @@
+<title>Audio Anywhere Recap</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+:root{
+  --bg:#f5f6f8; --surface:#ffffff; --ink:#141a24; --ink-2:#3f4a5c; --muted:#6b7587;
+  --rule:#dde1e8; --accent:#1f5fae; --accent-soft:#e6eef9;
+  --go:#2e7d4f; --go-soft:#e3f2e8; --warn:#a66a00; --warn-soft:#fbf0dc;
+  --stop:#b3261e; --stop-soft:#fbe5e3; --unk:#8a93a3; --unk-soft:#eceef2;
+  --display:"IBM Plex Sans Condensed","Arial Narrow",Arial,sans-serif;
+  --body:"IBM Plex Sans",-apple-system,"Segoe UI",Roboto,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0f141c; --surface:#171e29; --ink:#e8ecf2; --ink-2:#b7c0ce; --muted:#8792a4;
+    --rule:#2a3342; --accent:#7fb0ef; --accent-soft:#1b2a40;
+    --go:#6cc795; --go-soft:#16301f; --warn:#e2ad4f; --warn-soft:#352813;
+    --stop:#f08a80; --stop-soft:#3a1c1a; --unk:#8792a4; --unk-soft:#232b38;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0f141c; --surface:#171e29; --ink:#e8ecf2; --ink-2:#b7c0ce; --muted:#8792a4;
+  --rule:#2a3342; --accent:#7fb0ef; --accent-soft:#1b2a40;
+  --go:#6cc795; --go-soft:#16301f; --warn:#e2ad4f; --warn-soft:#352813;
+  --stop:#f08a80; --stop-soft:#3a1c1a; --unk:#8792a4; --unk-soft:#232b38;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.55}
+.wrap{max-width:1040px;margin:0 auto;padding-inline:20px;padding-block:28px 64px;display:flex;flex-direction:column;gap:40px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;letter-spacing:-.01em}
+h1{font-size:clamp(28px,4.4vw,40px);line-height:1.1;font-weight:700}
+h2{font-size:22px;font-weight:600}
+h3{font-size:17px;font-weight:600}
+p{margin:0;max-width:68ch}
+a{color:var(--accent);text-underline-offset:2px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:3px}
+.eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.num{font-variant-numeric:tabular-nums}
+section{display:flex;flex-direction:column;gap:14px}
+.sec-head{display:flex;flex-direction:column;gap:4px;border-top:1px solid var(--rule);padding-top:18px}
+
+/* Header */
+header{display:flex;flex-direction:column;gap:12px}
+.brief{color:var(--ink-2);font-size:16px}
+.meta{display:flex;flex-wrap:wrap;gap:6px 18px;font-family:var(--mono);font-size:12px;color:var(--muted)}
+
+/* BLUF verdict */
+.bluf{background:var(--surface);border:1px solid var(--rule);border-left:5px solid var(--stop);border-radius:6px;padding:20px 22px;display:flex;flex-direction:column;gap:12px}
+.bluf .tag{align-self:flex-start;font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;background:var(--stop-soft);color:var(--stop);padding:3px 8px;border-radius:3px;font-weight:500}
+.bluf h2{font-size:clamp(21px,3vw,27px);line-height:1.2}
+.bluf ol{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px;max-width:80ch}
+
+/* Shape grid */
+.shape{display:grid;grid-template-columns:1.35fr 1fr;gap:20px}
+@media (max-width:820px){.shape{grid-template-columns:1fr}}
+.panel{background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:18px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.panel .cap{font-size:13px;color:var(--muted)}
+.scroll{overflow-x:auto}
+
+/* Coverage matrix */
+table{border-collapse:collapse;width:100%;font-size:13.5px}
+th,td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-family:var(--mono);font-weight:500;font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+.matrix td,.matrix th{text-align:center}
+.matrix td:first-child,.matrix th:first-child{text-align:left;white-space:nowrap}
+.matrix th.hot{color:var(--go)}
+.cell{display:inline-block;min-width:44px;font-family:var(--mono);font-size:11px;padding:2px 6px;border-radius:3px}
+.y{background:var(--go-soft);color:var(--go)}
+.p{background:var(--warn-soft);color:var(--warn)}
+.n{background:var(--stop-soft);color:var(--stop)}
+.u{background:var(--unk-soft);color:var(--unk)}
+.matrix tr.you td{background:var(--accent-soft);font-weight:600}
+.legend{display:flex;flex-wrap:wrap;gap:8px 14px;font-size:12px;color:var(--muted);align-items:center}
+
+/* Funnel bars */
+.bars{display:flex;flex-direction:column;gap:12px}
+.bar-row{display:grid;grid-template-columns:118px 1fr;gap:10px;align-items:center}
+.bar-row .lbl{font-size:13px;color:var(--ink-2);line-height:1.25}
+.bar-row .lbl b{display:block;font-family:var(--mono);font-weight:500;color:var(--ink);font-size:13px}
+.track{height:22px;background:var(--unk-soft);border-radius:3px;position:relative}
+.fill{position:absolute;top:0;bottom:0;left:0;background:var(--accent);border-radius:3px}
+.range{position:absolute;top:0;bottom:0;background:var(--accent);opacity:.3;border-radius:0 3px 3px 0}
+.fill.sm{background:var(--stop)}
+.tick{position:absolute;top:-2px;bottom:-2px;width:2px;background:var(--stop)}
+
+/* Structured blocks */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media (max-width:820px){.two{grid-template-columns:1fr}}
+.pill{font-family:var(--mono);font-size:11px;padding:2px 7px;border-radius:3px;white-space:nowrap}
+td.neg{color:var(--stop);font-weight:600}
+td.pos{color:var(--go)}
+
+/* Evidence map (file-tree analog) */
+.tree{font-family:var(--mono);font-size:13px;display:flex;flex-direction:column;gap:2px}
+.tree .row{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:12px;padding:6px 8px;border-radius:4px;align-items:baseline}
+.tree .row:nth-child(odd){background:var(--unk-soft)}
+.tree .path{overflow-wrap:anywhere}
+.tree .path .dir{color:var(--muted)}
+.tree .w{color:var(--muted);text-align:right}
+.tree .conf{font-size:11px}
+
+/* Key findings tabs */
+.tabs{display:flex;flex-direction:column;gap:0}
+.tablist{display:flex;gap:2px;overflow-x:auto;border-bottom:1px solid var(--rule);scrollbar-width:thin}
+.tab{appearance:none;background:none;border:0;border-bottom:3px solid transparent;padding:10px 14px;font:500 14px var(--body);color:var(--muted);cursor:pointer;white-space:nowrap}
+.tab:hover{color:var(--ink)}
+.tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent)}
+.tabpanel{background:var(--surface);border:1px solid var(--rule);border-top:0;border-radius:0 0 6px 6px;padding:20px;display:flex;flex-direction:column;gap:14px}
+.summary{font-size:16px;font-weight:500}
+.notes{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.notes li{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start}
+.notes .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;padding:2px 6px;border-radius:3px;margin-top:2px;white-space:nowrap}
+.k.ev{background:var(--accent-soft);color:var(--accent)}
+.k.risk{background:var(--stop-soft);color:var(--stop)}
+.k.imp{background:var(--go-soft);color:var(--go)}
+.k.gap{background:var(--unk-soft);color:var(--unk)}
+blockquote{margin:0;border-left:3px solid var(--rule);padding-left:12px;color:var(--ink-2);font-style:italic}
+footer{font-size:12.5px;color:var(--muted);border-top:1px solid var(--rule);padding-top:14px}
+@media (prefers-reduced-motion:no-preference){.tab{transition:color .15s,border-color .15s}}
+</style>
+
+<div class="wrap">
+
+<header>
+  <span class="eyebrow">Market recap · iOS long-document reader · 25 Sep 2026</span>
+  <h1>Audio Anywhere: don't build it as described. Test one narrow version first.</h1>
+  <p class="brief">Audiobook-style listening for long documents is a real complaint. But the product as described already exists, the free built-in readers are catching up, and on iOS the "read anything" phase can't be built. One niche survives: a private reader for long, structured work documents.</p>
+  <div class="meta"><span>6 research streams + strategy pass</span><span>~29K words of evidence</span><span>Sources checked: medium–high confidence</span></div>
+</header>
+
+<div class="bluf" role="region" aria-label="Bottom line up front">
+  <span class="tag">Bottom line</span>
+  <h2>Stop the build. Spend 2–4 weeks and under $1.5K testing a "private briefing reader" for professionals. Build only if people pay.</h2>
+  <ol>
+    <li><strong>People do complain, but mostly not the ones who'd pay.</strong> The loudest complainers use free accessibility features. We found no first-hand complaint from a lawyer, consultant or analyst.</li>
+    <li><strong>The App Store is saturated.</strong> Speechify leads on distribution, ElevenReader leads on voice quality with 10 free hours a month, and Audeus already sells Google Docs + PDF + saved progress.</li>
+    <li><strong>It's a small-business opportunity, not a venture one.</strong> The realistic outcome is about $53–106K in year 1 after Apple's cut and $0.35–0.7M a year by year 3 in the success case.</li>
+    <li><strong>The only open lane is a narrow one:</strong> accurate reading of complex document structure, playback that never stops mid-document, and on-device privacy, all for long, confidential work documents.</li>
+  </ol>
+</div>
+
+<section aria-labelledby="shape">
+  <div class="sec-head"><span class="eyebrow">The shape</span><h2 id="shape">Where the market is crowded and where it's open</h2></div>
+  <div class="shape">
+    <div class="panel">
+      <h3>Feature coverage: who already does what you'd build</h3>
+      <div class="scroll">
+      <table class="matrix">
+        <thead><tr><th>Product</th><th>Google Docs</th><th>Resume</th><th>Desktop</th><th class="hot">PDF cleanup</th><th class="hot">On-device</th></tr></thead>
+        <tbody>
+          <tr><td>Speechify · $139/yr</td><td><span class="cell p">flaky</span></td><td><span class="cell p">buggy</span></td><td><span class="cell y">yes</span></td><td><span class="cell p">claims</span></td><td><span class="cell n">cloud</span></td></tr>
+          <tr><td>ElevenReader · $99/yr</td><td><span class="cell n">no</span></td><td><span class="cell p">buggy</span></td><td><span class="cell p">web</span></td><td><span class="cell n">weak</span></td><td><span class="cell n">cloud</span></td></tr>
+          <tr><td>Audeus · $119/yr</td><td><span class="cell y">yes</span></td><td><span class="cell y">yes</span></td><td><span class="cell p">web</span></td><td><span class="cell u">?</span></td><td><span class="cell n">cloud</span></td></tr>
+          <tr><td>NaturalReader · $79+</td><td><span class="cell y">yes</span></td><td><span class="cell p">limited</span></td><td><span class="cell y">yes</span></td><td><span class="cell u">?</span></td><td><span class="cell p">basic</span></td></tr>
+          <tr><td>Voice Dream · ~$60–80</td><td><span class="cell y">yes</span></td><td><span class="cell y">yes</span></td><td><span class="cell y">Mac</span></td><td><span class="cell u">?</span></td><td><span class="cell y">yes</span></td></tr>
+          <tr><td>Speech Central · $9.99 once</td><td><span class="cell p">files</span></td><td><span class="cell u">?</span></td><td><span class="cell y">yes</span></td><td><span class="cell p">claims</span></td><td><span class="cell y">yes</span></td></tr>
+          <tr><td>Google Docs Listen · bundled</td><td><span class="cell y">native</span></td><td><span class="cell u">?</span></td><td><span class="cell y">web</span></td><td><span class="cell n">n/a</span></td><td><span class="cell n">cloud</span></td></tr>
+          <tr><td>iOS Accessibility Reader · free</td><td><span class="cell y">any app</span></td><td><span class="cell n">no</span></td><td><span class="cell y">Mac</span></td><td><span class="cell n">none</span></td><td><span class="cell y">yes</span></td></tr>
+          <tr class="you"><td>Audio Anywhere (proposed)</td><td><span class="cell y">picker</span></td><td><span class="cell y">exact</span></td><td><span class="cell p">later</span></td><td><span class="cell y">core</span></td><td><span class="cell y">default</span></td></tr>
+        </tbody>
+      </table>
+      </div>
+      <div class="legend"><span class="cell y">yes</span><span class="cell p">partial</span><span class="cell n">no</span><span class="cell u">? unverified</span></div>
+      <p class="cap">Google Docs import, resume and desktop each already have three or more "yes" answers. Only accurate PDF cleanup and on-device privacy are thinly covered, so that's where the niche is.</p>
+    </div>
+
+    <div class="panel">
+      <h3>Market size, drawn to scale ($M a year)</h3>
+      <div class="bars" role="img" aria-label="TAM 45 to 70 million, SAM 5 to 16 million, year-3 revenue 0.35 to 0.7 million, year-1 0.05 to 0.1 million, on a 0 to 70 million scale">
+        <div class="bar-row"><div class="lbl"><b class="num">$45–70M</b>US read-aloud spend</div><div class="track"><div class="fill" style="width:64.3%"></div><div class="range" style="left:64.3%;width:35.7%"></div></div></div>
+        <div class="bar-row"><div class="lbl"><b class="num">$5–16M</b>Briefing-reader niche</div><div class="track"><div class="fill" style="width:7.1%"></div><div class="range" style="left:7.1%;width:15.8%"></div></div></div>
+        <div class="bar-row"><div class="lbl"><b class="num">$0.35–0.7M</b>You, year 3 (success)</div><div class="track"><div class="tick" style="left:0.8%"></div></div></div>
+        <div class="bar-row"><div class="lbl"><b class="num">$53–106K</b>You, year 1</div><div class="track"><div class="tick" style="left:0.1%"></div></div></div>
+      </div>
+      <p class="cap">Solid bar = low estimate; lighter extension = high estimate. About two-thirds of the spend is Speechify's. Ignore the "$4–5B TTS market" reports, which lump in call-center and car voice systems. At the typical 23% renewal rate for productivity apps, year 3 lands nearer $135K.</p>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="structure">
+  <div class="sec-head"><span class="eyebrow">Structure</span><h2 id="structure">Hypotheses and unit economics</h2></div>
+  <div class="two">
+    <div class="panel">
+      <h3>Your four hypotheses, tested</h3>
+      <div class="scroll"><table>
+        <thead><tr><th>Hypothesis</th><th>Verdict</th></tr></thead>
+        <tbody>
+          <tr><td>H1 · Built-in and existing readers fail on long docs, and people complain</td><td><span class="pill p">Partial</span></td></tr>
+          <tr><td>H2 · No strong AI reader dominates the App Store</td><td><span class="pill n">Rejected</span></td></tr>
+          <tr><td>H3 · Long docs + progress saving + Docs/PDF import is an ownable niche</td><td><span class="pill n">Rejected as stated</span></td></tr>
+          <tr><td>H4 · People will pay a subscription</td><td><span class="pill p">Partial</span></td></tr>
+        </tbody>
+      </table></div>
+      <p class="cap">The category makes money, but a new app starts from 2.6% of installs converting to paid, about 23% annual renewal, and about $32 of first-year revenue per paying user (<a href="https://www.revenuecat.com/blog/growth/subscription-app-trends-benchmarks-2026">RevenueCat 2026</a>).</p>
+    </div>
+    <div class="panel">
+      <h3>Gross margin at $9.99/mo (you keep $8.49 after Apple's 15%)</h3>
+      <div class="scroll"><table class="num">
+        <thead><tr><th>Voice cost</th><th>2 h/mo</th><th>5 h/mo</th><th>20 h/mo</th></tr></thead>
+        <tbody>
+          <tr><td>On-device ($0)</td><td class="pos">~100%</td><td class="pos">~100%</td><td class="pos">~100%</td></tr>
+          <tr><td>$16 / 1M chars</td><td>81%</td><td>51%</td><td class="neg">−94%</td></tr>
+          <tr><td>$30 / 1M chars</td><td>64%</td><td>8%</td><td class="neg">−264%</td></tr>
+          <tr><td>$100 / 1M (ElevenLabs v3)</td><td class="neg">−21%</td><td class="neg">−206%</td><td class="neg">−1,113%</td></tr>
+        </tbody>
+      </table></div>
+      <p class="cap">Don't sell unlimited premium cloud voices. Make on-device voices unlimited and meter 1–2 cloud "studio" hours a month. Price at $8.99/mo or $69/yr, with no card required for the trial.</p>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="keys">
+  <div class="sec-head"><span class="eyebrow">Key findings</span><h2 id="keys">Six findings, with the evidence behind each</h2></div>
+  <div class="tabs">
+    <div class="tablist" role="tablist" aria-label="Key findings">
+      <button class="tab" role="tab" id="t-demand" aria-controls="p-demand" aria-selected="true">Demand</button>
+      <button class="tab" role="tab" id="t-comp" aria-controls="p-comp" aria-selected="false" tabindex="-1">Competition</button>
+      <button class="tab" role="tab" id="t-plat" aria-controls="p-plat" aria-selected="false" tabindex="-1">Platform</button>
+      <button class="tab" role="tab" id="t-econ" aria-controls="p-econ" aria-selected="false" tabindex="-1">Economics</button>
+      <button class="tab" role="tab" id="t-time" aria-controls="p-time" aria-selected="false" tabindex="-1">Timing</button>
+      <button class="tab" role="tab" id="t-test" aria-controls="p-test" aria-selected="false" tabindex="-1">Test plan</button>
+    </div>
+
+    <div class="tabpanel" role="tabpanel" id="p-demand" aria-labelledby="t-demand">
+      <p class="summary">The pain is real and has lasted a decade. The people complaining just aren't the ones likely to pay.</p>
+      <ul class="notes">
+        <li><span class="k ev">Evidence</span><span>15+ Apple Community threads from iOS 8 to iOS 26 report Speak Screen and Listen to Page stopping, skipping or looping. <a href="https://discussions.apple.com/thread/256013629">"iOS 18: 'Speak Screen' is largely broken"</a>.</span></li>
+        <li><span class="k ev">Evidence</span><span>Paying users report the same failure: ElevenReader <a href="https://justuseapp.com/en/app/6479373050/elevenlabs-reader-ai-audio/reviews">"loses its place"</a>; in Speechify, one wrong tap <a href="https://ashishdoneriya.medium.com/bugs-in-speechify-f25852241cca">"goes back to the beginning of the book"</a>.</span></li>
+        <li><span class="k ev">Evidence</span><span>PDF clutter is a real problem: <blockquote>"confusing… to have the headers and footers read in the middle of the sentence" (<a href="https://lists.w3.org/Archives/Public/w3c-wai-gl/2015AprJun/0224.html">W3C list</a>)</blockquote></span></li>
+        <li><span class="k risk">Risk</span><span>The loudest group, blind and low-vision users, pushed back hard on subscriptions. Voice Dream had to <a href="https://www.perkins.org/resource/voice-dream-reader-subscription-controversy/">reverse its 2024 switch</a> to one.</span></li>
+        <li><span class="k gap">Gap</span><span>We found no first-hand evidence from lawyers, consultants or analysts, the very segment we recommend. Reddit was blocked from this environment.</span></li>
+      </ul>
+    </div>
+
+    <div class="tabpanel" role="tabpanel" id="p-comp" aria-labelledby="t-comp" hidden>
+      <p class="summary">Your first version is already on the market. Voice quality isn't a way to stand out anymore, because it's nearly free.</p>
+      <ul class="notes">
+        <li><span class="k ev">Evidence</span><span><a href="https://www.audeus.com/">Audeus</a> markets "Read Aloud PDFs, Gdocs & more" with automatic place-saving at $119/yr.</span></li>
+        <li><span class="k ev">Evidence</span><span>Speechify has been profitable for 4.5 years, claims 50–60M users, and makes about $2M a month from US iOS alone (<a href="https://app.sensortower.com/overview/1209815023?country=US">Sensor Tower</a>). It tests about 1,300 AI-made ads a day.</span></li>
+        <li><span class="k ev">Evidence</span><span>ElevenReader gives 10 free hours a month, then $99/yr, and its parent ElevenLabs is valued at <a href="https://techcrunch.com/2026/02/04/elevenlabs-raises-500m-from-sequioia-at-a-11-billion-valuation/">$11B</a>.</span></li>
+        <li><span class="k imp">Opening</span><span>Nobody does both reliable long listening and accurate reading of complex document structure. Speechify's billing anger (<a href="https://www.bbb.org/us/fl/miami/profile/education/speechify-inc-0633-92046942/complaints">F rating at the BBB</a>) makes honest billing a selling point.</span></li>
+      </ul>
+    </div>
+
+    <div class="tabpanel" role="tabpanel" id="p-plat" aria-labelledby="t-plat" hidden>
+      <p class="summary">"Read anything from anywhere" can't be built on iOS. Apple and Google give away good-enough versions of both phases.</p>
+      <ul class="notes">
+        <li><span class="k ev">Evidence</span><span>iOS keeps apps sealed off from each other, with no third-party access to other apps' screens or to iMessage and SMS (<a href="https://support.apple.com/guide/security/security-of-runtime-process-sec15bfe098e/web">Apple Platform Security</a>). The most you can do is the Share Sheet, a Safari extension, screenshot text recognition and Shortcuts, and competitors already ship all of those.</span></li>
+        <li><span class="k risk">Risk</span><span>The free <a href="https://support.apple.com/guide/iphone/read-listen-text-apps-accessibility-reader-iph406a46ab8/ios">iOS 26 Accessibility Reader</a> reads any app aloud. <a href="https://workspaceupdates.googleblog.com/2025/08/listen-to-documents-using-gemini-google-docs.html">Google Docs "Listen"</a> has used Gemini voices since August 2025.</span></li>
+        <li><span class="k imp">Do</span><span>Import Google Docs through the file picker, which only sees files the user chooses (the <code>drive.file</code> scope) and avoids a $500–4.5K+ yearly security audit. Build a Chrome extension before a Mac app. If "read anything" matters, it's an Android product.</span></li>
+      </ul>
+    </div>
+
+    <div class="tabpanel" role="tabpanel" id="p-econ" aria-labelledby="t-econ" hidden>
+      <p class="summary">Voice costs are manageable. What really limits you is customer acquisition cost against lifetime value.</p>
+      <ul class="notes">
+        <li><span class="k ev">Evidence</span><span>A 20-page brief (~60K characters) costs about $0.90 through OpenAI or Google's standard voices, $6 through ElevenLabs v3, and $0 with the on-device <a href="https://huggingface.co/hexgrad/Kokoro-82M">Kokoro-82M</a> voice model.</span></li>
+        <li><span class="k risk">Risk</span><span>At $32–50 lifetime value per payer and 3–6% of installs converting, you can afford only about $1–3 per install. Speechify's ad spending pushes the cost of the main search terms well above that, so paid acquisition is out.</span></li>
+        <li><span class="k imp">Earnings</span><span>Year 1 won't replace a salary. Year 3 can pay one part-time founder in the base case, or one to three people in the success case.</span></li>
+        <li><span class="k ev">Corrected</span><span>The source check found a math error in the raw data: 5–8 cloud hours a month costs about $7.70–12.30, not about $2. The allowance was cut to 1–2 hours.</span></li>
+      </ul>
+    </div>
+
+    <div class="tabpanel" role="tabpanel" id="p-time" aria-labelledby="t-time" hidden>
+      <p class="summary">The window for a broad reader has closed. A narrow one has roughly 6–12 months.</p>
+      <ul class="notes">
+        <li><span class="k ev">Tailwind</span><span>Neural voices now pass blind tests: 61% of listeners in <a href="https://www.edisonresearch.com/the-infinite-dial-2026/">Edison 2026</a> thought AI narration was human. Costs have collapsed, and Pocket's July 2025 shutdown left its users looking for a replacement.</span></li>
+        <li><span class="k ev">Tailwind</span><span>Wispr raised money at a <a href="https://techcrunch.com/2026/08/17/wispr-raises-280m-at-2b-valuation-as-it-looks-beyond-dictation/">$2B valuation</a> even though dictation is built into iOS, so a focused voice app can win next to a free built-in feature.</span></li>
+        <li><span class="k risk">Headwind</span><span>The Wispr comparison has a weak spot: people dictate dozens of times a day but listen to long documents 1–3 times a week. Less frequent use means weaker habits and more cancellations.</span></li>
+        <li><span class="k risk">Risk</span><span>Apple adds better voices and saved progress to Accessibility Reader in iOS 27 or 28, or professionals decide they only want summaries, which NotebookLM and Docs already give free.</span></li>
+      </ul>
+    </div>
+
+    <div class="tabpanel" role="tabpanel" id="p-test" aria-labelledby="t-test" hidden>
+      <p class="summary">Seven experiments, under $1.5K, with thresholds set in advance. The key test is a hand-run service with no app built.</p>
+      <div class="scroll"><table>
+        <thead><tr><th>Test</th><th>Pass</th><th>Kill</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Hand-run service:</strong> clean the documents yourself, send audio to a private podcast feed, ask for payment</td><td>≥40% "very disappointed" without it, ≥25% pay</td><td>&lt;15% pay</td></tr>
+          <tr><td><strong>Interviews</strong> with 15–20 professionals about how they handle long documents now</td><td>≥8 of 15 handle 2+ must-know long docs a week</td><td>Most say a summary is enough</td></tr>
+          <tr><td><strong>Head-to-head:</strong> 10 messy docs through 6 incumbents</td><td>Each fails ≥3 of 10</td><td>2 apps pass ≥9 of 10</td></tr>
+          <tr><td><strong>Ad test:</strong> "Private briefing reader" vs "Read anything"</td><td>≤$30 per paying user</td><td>&gt;$60</td></tr>
+          <tr><td><strong>iOS 27 + Docs iOS check</strong></td><td>Built-in fails ≥30% of docs</td><td>Built-in within 20% of best</td></tr>
+          <tr><td><strong>Cleanup prototype</strong> on 30 PDFs, blind test vs ElevenReader</td><td>Preferred ≥65% of the time</td><td>Can't beat ElevenReader</td></tr>
+          <tr><td><strong>"Why you" memo</strong>: a named way to reach your first 100 users</td><td>A concrete channel exists</td><td>None</td></tr>
+        </tbody>
+      </table></div>
+      <p class="cap">Build only if the hand-run service and the interviews pass, plus two of the head-to-head, ad test and prototype.</p>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="evidence">
+  <div class="sec-head"><span class="eyebrow">Evidence map</span><h2 id="evidence">What the conclusions rest on</h2></div>
+  <div class="panel">
+    <div class="tree">
+      <div class="row"><span class="path"><span class="dir">reports/</span>2026-09-25-audio-anywhere-market-analysis.md</span><span class="w num">8,279 w</span><span class="conf"><span class="pill y">full report</span></span></div>
+      <div class="row"><span class="path"><span class="dir">reports/</span>source-verification.md</span><span class="w num">1,327 w</span><span class="conf"><span class="pill y">9/9 spot checks pass</span></span></div>
+      <div class="row"><span class="path"><span class="dir">raw/</span>pm-analysis.md</span><span class="w num">5,981 w</span><span class="conf"><span class="pill p">sizing: low–med</span></span></div>
+      <div class="row"><span class="path"><span class="dir">raw/</span>competitor-data.md</span><span class="w num">3,782 w</span><span class="conf"><span class="pill p">snippets only</span></span></div>
+      <div class="row"><span class="path"><span class="dir">raw/</span>pricing-data.md</span><span class="w num">2,655 w</span><span class="conf"><span class="pill p">1 error fixed</span></span></div>
+      <div class="row"><span class="path"><span class="dir">raw/</span>voice-quotes.md</span><span class="w num">2,179 w</span><span class="conf"><span class="pill n">no Reddit</span></span></div>
+      <div class="row"><span class="path"><span class="dir">raw/</span>trends-data.md</span><span class="w num">2,133 w</span><span class="conf"><span class="pill n">no Google Trends</span></span></div>
+      <div class="row"><span class="path"><span class="dir">raw/</span>local-context.md</span><span class="w num">1,854 w</span><span class="conf"><span class="pill y">official docs</span></span></div>
+      <div class="row"><span class="path"><span class="dir">raw/</span>communities-found.md</span><span class="w num">694 w</span><span class="conf"><span class="pill p">partial</span></span></div>
+    </div>
+    <p class="cap">Reddit, App Store pages, Google Trends and many vendor sites were blocked from this environment, so most user quotes come from search-result snippets. Before relying on this, read r/dyslexia, r/ADHD and r/LawFirm, and App Store reviews, by hand.</p>
+  </div>
+</section>
+
+<footer>Research files are in <code>research/audio-anywhere/</code> on branch <code>claude/eloquent-johnson-rvwxot</code> of btechk/market-research-agent. Layout adapted from the visual-recap method: headline first, then structure, then key findings with notes.</footer>
+</div>
+
+<script>
+(function(){
+  var tabs=[].slice.call(document.querySelectorAll('.tab'));
+  function select(t,focus){
+    tabs.forEach(function(x){
+      var on=x===t;
+      x.setAttribute('aria-selected',on?'true':'false');
+      x.tabIndex=on?0:-1;
+      document.getElementById(x.getAttribute('aria-controls')).hidden=!on;
+    });
+    if(focus)t.focus();
+    try{localStorage.setItem('aa-tab',t.id)}catch(e){}
+  }
+  tabs.forEach(function(t,i){
+    t.addEventListener('click',function(){select(t)});
+    t.addEventListener('keydown',function(e){
+      var d=e.key==='ArrowRight'?1:e.key==='ArrowLeft'?-1:0;
+      if(d){e.preventDefault();select(tabs[(i+d+tabs.length)%tabs.length],true)}
+    });
+  });
+  var h=(location.hash||'').slice(1),saved=null;
+  try{saved=localStorage.getItem('aa-tab')}catch(e){}
+  var start=document.getElementById('t-'+h)||document.getElementById(saved);
+  if(start&&start.classList.contains('tab'))select(start);
+})();
+</script>
